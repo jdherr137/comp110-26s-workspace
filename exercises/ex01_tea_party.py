@@ -5,9 +5,11 @@ __author__ = "730748032"
 
 def main_planner(guests: int) -> None:
     """total people input, returns all functions"""
+
+    print("A Cozy Tea Party for", guests, "People!")
     print("Tea Bags:", tea_bags(guests))
     print("Treats:", treats(guests))
-    print("Cost: $", cost(tea_bags(guests), treats(guests)))
+    print(f"Cost: ${cost(tea_bags(guests), treats(guests))}")
 
 
 def tea_bags(people: int) -> int:
@@ -17,7 +19,7 @@ def tea_bags(people: int) -> int:
 
 def treats(people: int) -> int:
     """Amount of treats needed for people"""
-    return int(tea_bags(people) * 1.5)
+    return int(tea_bags(people=people) * 1.5)
 
 
 def cost(tea_count: int, treat_count: int) -> float:
