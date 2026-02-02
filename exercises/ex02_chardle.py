@@ -3,7 +3,7 @@
 __author__ = "730748032"
 
 
-def input_word():
+def input_word() -> str:
     """input prompt"""
     word: str = input("Enter a 5-character word: ")
 
@@ -14,7 +14,7 @@ def input_word():
     return word
 
 
-def input_letter():
+def input_letter() -> str:
     """prompts letter search within the word that was submitted via input_word"""
     letter: str = input("Enter a single character: ")
 
@@ -57,11 +57,13 @@ def contains_char(word: str, letter: str) -> None:
         print(str(count) + " instances of " + letter + " found in " + word)
 
 
-"""runs the previous 3 functions in order and """
+"""Runs functions in order """
 
 
 def main() -> None:
-    contains_char(word=input_word(), letter=input_letter())
+    word: str = input_word()
+    letter: str = input_letter()
+    contains_char(word, letter)
 
 
 if __name__ == "__main__":
