@@ -49,12 +49,17 @@ def contains_char(word: str, letter: str) -> None:
         print(letter + " found at index 4")
         count += 1
 
-    """if the count=1 then it prints the letter """
+    """ for when one letter is found  """
 
     if count == 1:
         print("1 instance of " + letter + " found in " + word)
+
+    """when no letters are found"""
+    if count == 0:
+        print("No instances of " + letter + " found in " + word)
     else:
         print(str(count) + " instances of " + letter + " found in " + word)
+    """when more letters are found """
 
 
 """Runs functions in order """
@@ -66,5 +71,6 @@ def main() -> None:
     contains_char(word, letter)
 
 
+"""needed for later"""
 if __name__ == "__main__":
     main()
