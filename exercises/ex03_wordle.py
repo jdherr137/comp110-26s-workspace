@@ -54,7 +54,7 @@ def emojified(guess: str, secret_word: str) -> str:
 def main(secret: str) -> None:
     """The entrypoint of the program and main game loop."""
 
-    secret_word: str = "codes"
+    secret_word: str = secret
     turn: int = 1  # sets turn counter
 
     while turn <= 6:
