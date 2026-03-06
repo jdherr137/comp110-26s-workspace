@@ -1,10 +1,10 @@
-"""EX05 - Dictionary Utility Functions"""
+"""EX05 - Dictionary Utility Functions."""
 
 __author__ = "730748032"
 
 
 def invert(dictionary: dict[str, str]) -> dict[str, str]:
-    """inverts the keys and values from a dictonary"""
+    """Invert the keys and values of a dictionary."""
     result: dict[str, str] = {}
     for key in dictionary:
         value = dictionary[key]
@@ -15,7 +15,7 @@ def invert(dictionary: dict[str, str]) -> dict[str, str]:
 
 
 def favorite_color(favorites: dict[str, str]) -> str:
-    """sorts favorite colors and determines which is the most popular"""
+    """Return the most popular favorite color."""
     colors: dict[str, int] = {}
     for name in favorites:
         color = favorites[name]
@@ -34,7 +34,7 @@ def favorite_color(favorites: dict[str, str]) -> str:
 
 
 def count(values: list[str]) -> dict[str, int]:
-    """counts how many times a vaule is in a list"""
+    """Count how many times a value appears in a list."""
     result: dict[str, int] = {}
     for value in values:
         if value in result:
@@ -45,7 +45,7 @@ def count(values: list[str]) -> dict[str, int]:
 
 
 def alphabetizer(words: list[str]) -> dict[str, list[str]]:
-    """sorts words based off of their first letter"""
+    """Group words by their first letter."""
     result: dict[str, list[str]] = {}
 
     for word in words:
@@ -60,7 +60,7 @@ def alphabetizer(words: list[str]) -> dict[str, list[str]]:
 
 
 def update_attendance(att: dict[str, list[str]], day: str, student: str) -> None:
-    """update attendance log with students names"""
+    """Update the attendance log with a student's name."""
     if day not in att:
         att[day] = [student]
     else:
