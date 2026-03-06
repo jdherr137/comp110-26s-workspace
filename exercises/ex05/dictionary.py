@@ -4,6 +4,7 @@ __author__ = "730748032"
 
 
 def invert(dictionary: dict[str, str]) -> dict[str, str]:
+    """inverts the keys and values from a dictonary"""
     result: dict[str, str] = {}
     for key in dictionary:
         value = dictionary[key]
@@ -14,6 +15,7 @@ def invert(dictionary: dict[str, str]) -> dict[str, str]:
 
 
 def favorite_color(favorites: dict[str, str]) -> str:
+    """sorts favorite colors and determines which is the most popular"""
     colors: dict[str, int] = {}
     for name in favorites:
         color = favorites[name]
@@ -32,6 +34,7 @@ def favorite_color(favorites: dict[str, str]) -> str:
 
 
 def count(values: list[str]) -> dict[str, int]:
+    """counts how many times a vaule is in a list"""
     result: dict[str, int] = {}
     for value in values:
         if value in result:
@@ -42,6 +45,7 @@ def count(values: list[str]) -> dict[str, int]:
 
 
 def alphabetizer(words: list[str]) -> dict[str, list[str]]:
+    """sorts words based off of their first letter"""
     result: dict[str, list[str]] = {}
 
     for word in words:
@@ -56,8 +60,9 @@ def alphabetizer(words: list[str]) -> dict[str, list[str]]:
 
 
 def update_attendance(att: dict[str, list[str]], day: str, student: str) -> None:
-    if day in att:
+    """update attendance log with students names"""
+    if day not in att:
+        att[day] = [student]
+    else:
         if student not in att[day]:
             att[day].append(student)
-        else:
-            att[day] = [student]
