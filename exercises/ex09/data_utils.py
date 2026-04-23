@@ -51,7 +51,10 @@ def convert_columns_to_int(
 
     return data_converted
 
+
 """These are the functions we wrote/will write in class!"""
+
+
 def read_csv_rows(filename: str) -> list[dict[str, str]]:
     """Read the rows of a CSV into a 'table'."""
     result: list[dict[str, str]] = []
@@ -90,5 +93,107 @@ def columnar(row_table: list[dict[str, str]]) -> dict[str, list[str]]:
     first_row: dict[str, str] = row_table[0]
     for column in first_row:
         result[column] = column_values(row_table, column)
+
+    return result
+
+
+def head(table: dict[str, list[str]], rows: int) -> dict[str, list[str]]:
+    result: dict[str, list[str]] = {}
+
+    for column in table:
+        values: list[str] = []
+        i: int = 0
+        while i < rows and i < len(table[column]):
+            values.append(table[column][i])
+            i += 1
+
+        result[column] = values
+    return result
+
+
+def select(table: dict[str, list[str]], columns: list[str]) -> dict[str, list[str]]:
+    result: dict[str, list[str]] = {}
+
+    for column in columns:
+        result[column] = table[column]
+
+    return result
+
+
+def concat(
+    table1: dict[str, list[str]], table2: dict[str, list[str]]
+) -> dict[str, list[str]]:
+    result: dict[str, list[str]] = {}
+
+    for column in table1:
+        result[column] = table1[column]
+
+    for column in table2:
+        if column in result:
+            result[column] += table2[column]
+        else:
+            result[column] = table2[column]
+
+    return result
+
+
+def count(values: list[str]) -> dict[str, int]:
+    result: dict[str, int] = {}
+
+    for item in values:
+        if item in result:
+            result[item] += 1
+        else:
+            result[item] = 1
+
+    return result
+
+
+# not used
+def filter_experience(data: list[str], value_of_intrest: str):
+    result: list[str] = []
+    for val in data:
+        if val == value_of_intrest:
+            result.append(value_of_intrest)
+        else:
+            result.append("null")
+
+    return result
+
+
+# not used
+def filter_effective(data: list[str], val1: str, val2: str, val3: str):
+    result: list[str] = []
+    for val in data:
+        if val == val1:
+            result.append(val1)
+        elif val == val2:
+            result.append(val2)
+        elif val == val3:
+            result.append(val3)
+        else:
+            result.append("null")
+
+    return result
+
+
+# combines two previous functions
+def filter_and_pair(
+    exp_data: list[str],
+    eff_data: list[str],
+    exp_value: str,
+    val1: str,
+    val2: str,
+    val3: str,
+):
+
+    result: list[tuple[str, str]] = []
+
+    for i in range(len(exp_data)):
+        exp = exp_data[i]
+        eff = eff_data[i]
+
+        if exp == exp_value and eff in [val1, val2, val3]:
+            result.append((exp, eff))
 
     return result
