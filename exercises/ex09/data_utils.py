@@ -149,51 +149,57 @@ def count(values: list[str]) -> dict[str, int]:
     return result
 
 
-# not used
-def filter_experience(data: list[str], value_of_intrest: str):
-    result: list[str] = []
-    for val in data:
-        if val == value_of_intrest:
-            result.append(value_of_intrest)
-        else:
-            result.append("null")
-
-    return result
-
-
-# not used
-def filter_effective(data: list[str], val1: str, val2: str, val3: str):
-    result: list[str] = []
-    for val in data:
-        if val == val1:
-            result.append(val1)
-        elif val == val2:
-            result.append(val2)
-        elif val == val3:
-            result.append(val3)
-        else:
-            result.append("null")
-
-    return result
-
-
-# combines two previous functions
-def filter_and_pair(
+# filter out all empty strings and make a dict[str, list[str ]] of the useable data
+def filter_and_pair_prior_exp(
     exp_data: list[str],
     eff_data: list[str],
     exp_value: str,
-    val1: str,
-    val2: str,
-    val3: str,
-):
+) -> dict[str, list[str]]:
 
-    result: list[tuple[str, str]] = []
+    result: dict[str, list[str]] = {"prior_exp": [], "tutoring_effective": []}
 
     for i in range(len(exp_data)):
         exp = exp_data[i]
         eff = eff_data[i]
 
-        if exp == exp_value and eff in [val1, val2, val3]:
-            result.append((exp, eff))
+        # Keep all people with the chosen experience value
+        # but remove rows where effectiveness is blank
+        if exp == exp_value and eff != "":
+            result["prior_exp"].append(exp)
+            result["tutoring_effective"].append(eff)
 
     return result
+
+
+# filter for understanding part
+def filter_understand_vs_effectiveness(
+    understand_data: list[str],
+    eff_data: list[str],
+) -> dict[str, list[str]]:
+
+    result: dict[str, list[str]] = {"understand": [], "tutoring_effective": []}
+
+    for i in range(len(eff_data)):
+        eff = eff_data[i]
+        und = understand_data[i]
+
+        # remove empty effectiveness values
+        if eff != "":
+            result["understand"].append(und)
+            result["tutoring_effective"].append(eff)
+
+    return result
+
+
+# cleans out all empty strings in tutor_effective
+def clean_data(data: dict[str, list[str]]) -> dict[str, list[str]]:
+    cleaned: dict[str, list[str]] = {}
+
+    for col_name in data:
+        cleaned[col_name] = []
+
+        for value in data[col_name]:
+            if value != "":
+                cleaned[col_name].append(value)
+
+    return cleaned
