@@ -180,8 +180,8 @@ def filter_understand_vs_effectiveness(
     result: dict[str, list[str]] = {"understand": [], "tutoring_effective": []}
 
     for i in range(len(eff_data)):
-        eff = eff_data[i]
         und = understand_data[i]
+        eff = eff_data[i]
 
         # remove empty effectiveness values
         if eff != "":
